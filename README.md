@@ -47,6 +47,7 @@ Berdasarkan gambar diatas dapat dilihat bahwa pengiriman segemen data pertama ka
 
 <img src="img/tcp6.png" alt="">
 
+
 Terlihat pada gambar diatas bahwa `Frame: 4` terjadi pada detik ke-`0.24047`
 
 Kemudian terlihat juga pada `Frame: 7` ACK dari segmen data pertama akan diterima yaitu pada detik ke-`0.052671`
@@ -64,4 +65,51 @@ What is the length (header plus payload) of each of the first four data-carrying
 <img src="img/tcp5.png" alt="">
 
 Dari gambar diatas dapat dilihat bahwa panjang dari 4 segmen pertama adalah 4*(1448+32) = 5920 bytes
+
+
+## UDP
+### No.1
+Select the first UDP segment in your trace. What is the packet number4 of this segment in the trace file? What type of application-layer payload or protocol message is being carried in this UDP segment? Look at the details of this packet in Wireshark. How many fields there are in the UDP header? What are the names of these fields?
+
+<img src="img/udp1.png" alt="">
+
+Berdasarkan gambar diatas kita dapat nomor paket adalah 5 dengan protokol `SSDP` dan memiliki 4 fields yaitu `source port`, `destination port`, `length`, dan `checksum`
+
+### No.2
+By consulting the displayed information in Wireshark’s packet content field for this packet (or by consulting the textbook), what is the length (in bytes) of each of the UDP header fields?
+
+Dari gambar di soal 1 setiap field memiliki 2 bytes, karena ada 4 fields maka totalnya adalah 4*2 = 8 bytes
+
+### No.3
+The value in the Length field is the length of what?
+
+Karena Length field adalah gabungan UDP header dan UDP payload. Berdasarkan gambar diatas UDP payload = 275 dengan Header = 8, maka Length fieldnya adalah 275+8 = 283
+  
+### No.4
+What is the maximum number of bytes that can be included in a UDP payload?
+
+Jumlh maximum bytes yang dapat dimasukkan ke dalam UDP payload adalah (2^16-1) bytes (termasuk header bytes). Sehingga, maximum bytes yang dapat dimasukkan ke dalam UDP payload adalah (2^16-1)-8 = 65527 bytes
+
+### No.5
+What is the largest possible source port number?
+
+source port terbesar yang mungkin adalah (2^16-1) = 65535
+
+### No.6
+
+img
+
+What is the protocol number for UDP? Give your answer in decimal notation.
+
+Berdasarkan gambar diatas dapat dilihat bahwa nomor protokol untuk UDP adalah `17` atau `0x11`
+
+### No.7
+Examine the pair of UDP packets in which your host sends the first UDP packet and the second UDP packet is a reply to this first UDP packet. (Hint: for a second packet to be sent in response to a first packet, the sender of the first packet should be the destination of the second packet). What is the packet number of the first of these two UDP segments in the trace file? What is the packet number6 of the second of these two UDP segments in the trace file? Describe the relationship between the port numbers in the two packets.
+
+img
+
+Berdasarkan gambar nomor paket pertama dari dua UDP segmen dalah `paket 15`, kemudian nomor paket ke 2 dari dua UDP segmen adalah `Paket 17`
+
+kita dapat menyimpulkam bahwa hubungan antara nomor-nomor packet adalah source port dari paket 15 (request) adalah destinasi port untuk paket 17 (reply) dan sebaliknya
+
 

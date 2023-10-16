@@ -1,7 +1,8 @@
 # TCP-UCP
 
-<h2>Nama : Arundaya Pratama Nurhasan</h2>
-<h2>NRP  : 5025221206</h2>
+<h2>Nama : Arundaya Pratama Nurhasan
+<br>
+NRP  : 5025221206</h2>
 
 ## TCP
 ### No.1

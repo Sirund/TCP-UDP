@@ -22,6 +22,7 @@ NRP  : 5025221206</h3>
 ### No.4
 <p>What is the sequence number of the SYNACK segment sent by gaia.cs.umass.edu to the client computer in reply to the SYN? What is it in the segment that identifies the segment as a SYNACK segment? What is the value of the Acknowledgement field in the SYNACK segment? How did gaia.cs.umass.edu determine that value?</p>
 <img src="img/tcp3.png" alt="">
-<p>Setelah melakukan seleksi dengan filter ```tcp.flags.syn == 1 && ip.src == 128.119.245.12``` (karena pesan berasal dari gaia.cs.umass.edu) maka akan terlihat bahwa Sequence number (raw) dari gaia.cs.umass.edu ke client computer adalah ```1068969752```, segemen TCP tersebut bisa dipastikan sebagai segmen SYNACK dengan melihat ```Flags: 0x012 (SYNACK)``` dan memiliki Acknowledgments Number (raw) : ```4236649188```</p>
+<br>
+Setelah melakukan seleksi dengan filter ```tcp.flags.syn == 1 && ip.src == 128.119.245.12``` (karena pesan berasal dari gaia.cs.umass.edu) maka akan terlihat bahwa Sequence number (raw) dari gaia.cs.umass.edu ke client computer adalah ```1068969752```, segemen TCP tersebut bisa dipastikan sebagai segmen SYNACK dengan melihat ```Flags: 0x012 (SYNACK)``` dan memiliki Acknowledgments Number (raw) : ```4236649188```
 
 

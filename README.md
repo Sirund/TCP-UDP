@@ -14,7 +14,7 @@ Setelah melakukan filter `http` maka akan terlihat bahwa alamat IP dari `source`
 ### No.2
 What is the IP address of gaia.cs.umass.edu? On what port number is it sending and receiving TCP segments for this connection?
 
-Berdasarkan gambar diatas dapat kita lihat bahwa alamat IP dari gaia.cs.umass.edu adalah `128.119.245.12` dan menggunakan port `80`
+Berdasarkan gambar pada  nomor satu dapat kita lihat bahwa alamat IP dari gaia.cs.umass.edu adalah `128.119.245.12` dan menggunakan port `80`
 
 ### No.3
 What is the sequence number of the TCP SYN segment that is used to initiate the TCP connection between the client computer and gaia.cs.umass.edu? What is it in this TCP segment that identifies the segment as a SYN segment? Will the TCP receiver in this session be able to use Selective Acknowledgments?
@@ -30,4 +30,38 @@ What is the sequence number of the SYNACK segment sent by gaia.cs.umass.edu to t
 
 Setelah melakukan seleksi dengan filter `tcp.flags.syn == 1 && ip.src == 128.119.245.12` (karena pesan berasal dari gaia.cs.umass.edu) maka akan terlihat bahwa Sequence number (raw) dari gaia.cs.umass.edu ke client computer adalah `1068969752`, segemen TCP tersebut bisa dipastikan sebagai segmen SYNACK dengan melihat `Flags: 0x012 (SYNACK)` dan memiliki Acknowledgments Number (raw) yaitu `4236649188`
 
+### No.5
+What is the sequence number of the TCP segment containing the header of the HTTP POST command? How many bytes of data are contained in the payload (data) field of this TCP segment? Did all of the data in the transferred file alice.txt fit into this single segment?
+
+<img src="img/tcp4.png" alt="">
+
+Dengan melakukan filter `http.request.method == POST` seperti gambar diatas kita akan mendapati bahwa Sequence Number segmen tersebut adalah 152041 dengan Sequence Number (raw) adalah 4236801228 dan TCP Payload sebesar 1385 bytes. Dari data tersebut juga terlihat bahwa file tersebut tidak dikirim hanya menggunakan satu segmen saja melainkan menggunakan `MIME` (Multipart Media Encapsulation)
+
+### No.6
+Consider the TCP segment containing the HTTP “POST” as the first segment in the data transfer part of the TCP connection.
+At what time was the first segment (the one containing the HTTP POST) in the data-transfer part of the TCP connection sent? At what time was the ACK for this first data-containing segment received? What is the RTT for this first data-containing segment? What is the RTT value the second data-carrying TCP segment and its ACK? What is the EstimatedRTT value (see Section 3.5.3, in the text) after the ACK for the second data-carrying segment is received?
+
+<img src="img/tcp5.png" alt="">
+
+Berdasarkan gambar diatas dapat dilihat bahwa pengiriman segemen data pertama kali terjadi pada `Frame: 4` 
+
+<img src="img/tcp6.png" alt="">
+
+Terlihat pada gambar diatas bahwa `Frame: 4` terjadi pada detik ke-`0.24047`
+
+Kemudian terlihat juga pada `Frame: 7` ACK dari segmen data pertama akan diterima yaitu pada detik ke-`0.052671`
+
+Berdasarkan gambar diatas dapat disimpulkan bahwa RTT dari data pertama adalah 0.028624 detik
+
+<img src="img/tcp7.png" alt="">
+
+Didapat dari gambar bahwa segmen data kedua dimulai dari `Frame: 5` dan ACK dari segmen tersebut akan diterima pada `Frame: 8` yang memiliki nilai RTT 0.028628 detik
+
+
+### No.7
+What is the length (header plus payload) of each of the first four data-carrying TCP segments?
+
+<img src="img/tcp5.png" alt="">
+
+Dari gambar diatas dapat dilihat bahwa panjang dari 4 segmen pertama adalah 4*(1448+32) = 5920 bytes
 
